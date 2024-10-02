@@ -5,16 +5,19 @@
 
 *{
   font-family: Outfit;
+  background-color: #ffe9d3;
 }
 
 select,input,textarea{
-  border: 1px solid #c2c2c2;
-  outline-color: #C586A5;
-  border-radius: 4px;
+  border: 1px solid #130f0f;
+  border-radius: 6px;
 }
 
 .active{
-  background-color: #ffebf5;
-  border-color: #C586A5;
+  background-color: rgb(107 114 128);
+  color: black;
 }
 
+hr {
+  border-color: black;
+}

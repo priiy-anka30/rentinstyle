@@ -45,11 +45,11 @@ const Orders = ({ token }) => {
   }, [token]);
 
   return (
-    <div class="w-[175%]">
-      <h3>Order Page</h3>
+    <div className="w-[175%]">
+      <h3 className="text-xl font-bold mb-2">Order Page</h3>
       <div>
         {orders.map((order, index) => (
-         <div className="w-full grid grid-cols-1 sm:grid-cols-[1fr_2fr_1fr] lg:grid-cols-[1fr_2fr_1fr_1fr_1fr] gap-4 items-start border-2 border-gray-200 p-5 md:p-8 my-3 md:my-4 text-xs sm:text-sm text-gray-700" key={index}>
+         <div className="w-full grid grid-cols-1 sm:grid-cols-[1fr_2fr_1fr] lg:grid-cols-[1fr_2fr_1fr_1fr_1fr] gap-4 items-start border-2 border-black p-5 md:p-8 my-3 md:my-4 text-xs sm:text-sm text-gray-700" key={index}>
             <img className="w-12" src={assets.parcel_icon} alt="" />
             <div>
               <div>
@@ -94,9 +94,9 @@ const Orders = ({ token }) => {
             <select onChange={(event)=>statusHandler(event,order._id)} value={order.status} className="p-2 font-semibold">
               <option value="Order Placed">Order Placed</option>
               <option value="Packing">Packing</option>
-              <option value="Shipped">Shipped</option>
-              <option value="Out for delivery">Out for delivery</option>
-              <option value="Delivered">Delivered</option>
+              <option value="Shipped">Out for delivery</option>
+              <option value="Out for delivery">Delivered</option>
+              <option value="Delivered">Return Pickup</option>
             </select>
           </div>
         ))}
