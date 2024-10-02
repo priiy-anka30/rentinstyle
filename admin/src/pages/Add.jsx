@@ -14,7 +14,7 @@ const Add = ({token}) => {
   const [name,setName]=useState("");
   const [description,setDescription]=useState("");
   const [price,setPrice]=useState("");
-  const [subCategory,setSubCategory]=useState("Topwear");
+//   const [subCategory,setSubCategory]=useState("Topwear");
   const [category,setCategory]=useState("Men");
   const [bestseller,setBestseller]=useState(false);
   const [sizes,setSizes]=useState([]);
@@ -30,7 +30,7 @@ const Add = ({token}) => {
     formData.append("name", name);
     formData.append("description", description);
     formData.append("price", price);
-    formData.append("subCategory", subCategory);
+    // formData.append("subCategory", subCategory);
     formData.append("category", category);
     formData.append("bestseller", bestseller);
     formData.append("sizes", JSON.stringify(sizes));
@@ -89,17 +89,17 @@ const Add = ({token}) => {
                 <select onChange={(e)=>setCategory(e.target.value)} className='w-full px-3 py-2'>
                     <option value="Men">Men</option>
                     <option value="Women">Women</option>
-                    <option value="Kids">Kids</option>
+                    {/* <option value="Kids">Kids</option> */}
                 </select>
             </div>
-            <div>
+            {/* <div>
                 <p className='mb-2'>Sub Category</p>
                 <select onChange={(e)=>setSubCategory(e.target.value)} className='w-full px-3 py-2'>
                     <option value="Topwear">Topwear</option>
                     <option value="Bottomwear">Bottomwear</option>
                     <option value="Winterwear">Winterwear</option>
                 </select>
-            </div>
+            </div> */}
             <div>
                 <p className='mb-2'>Product Price</p>
                 <input onChange={(e)=>setPrice(e.target.value)} value = {price} className='w-full px-3 py-2 sm:w-[120px]' type='number' placeholder='25' />

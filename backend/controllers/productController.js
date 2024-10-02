@@ -3,7 +3,7 @@ import productModel from "../models/productModel.js";
 
 const addProduct = async (req, res) => {
     try {
-        const { name, description, price, category, subCategory, sizes, bestseller } = req.body;
+        const { name, description, price, category, sizes, bestseller } = req.body; //subCategory
 
         // Ensure req.files is available
         if (!req.files || Object.keys(req.files).length === 0) {
@@ -28,7 +28,7 @@ const addProduct = async (req, res) => {
             description,
             price: Number(price),
             category,
-            subCategory,
+            // subCategory,
             sizes: JSON.parse(sizes),
             image: imagesUrl, // Ensure correct property name
             bestseller: bestseller === "true",
