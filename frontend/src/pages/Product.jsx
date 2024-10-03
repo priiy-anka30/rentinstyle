@@ -27,7 +27,7 @@ const Product = () => {
   },[productId,products])
 
   return productData ? (
-    <div className='border-t-2 pt-10 transition-opacity ease in duration-500 opacity-100'>
+    <div className='border-t-2 border-black pt-10 transition-opacity ease in duration-500 opacity-100'>
       {/* Product Data */}
       <div className='flex gap-12 sm:gap-12 flex-col sm:flex-row'>
           {/* Product Image */}
@@ -80,10 +80,10 @@ const Product = () => {
       {/* Description And Review Section */}
       <div className='mt-20'>
         <div className='flex'>
-          <b className='border px-5 py-3 text-sm'>Description</b>
-          <p className='border px-5 py-3 text-sm'>Reviews (122)</p>
+          <b className='border border-black px-5 py-3 text-sm'>Description</b>
+          <p className='border border-black px-5 py-3 text-sm'>Reviews (122)</p>
         </div>
-        <div className='flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500'>
+        <div className='flex flex-col gap-4 border border-black px-6 py-6 text-sm text-gray-500'>
           <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero, exercitationem? Quibusdam consequuntur neque ab ullam? Repudiandae, maxime alias! Veritatis, voluptatum.</p>
           <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime saepe ea, eius voluptates cupiditate, architecto distinctio explicabo, vel ipsam sit facere consectetur voluptatem! Dolorem, pariatur.</p>
         </div>

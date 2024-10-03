@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 const Footer = () => {
   return (
     <div className='border-t-4 border-black'>
-      <div className='flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-10 text-sm'>
+      <div className='flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-1 mt-10 text-sm'>
          <div>
             <NavLink to='/'>
             <p className='font-mono text-black text-2xl cursor-pointer pb-4'>RentinStyle</p>
@@ -32,7 +32,6 @@ const Footer = () => {
          </div>
       </div>
       <div>
-        <hr />
         <p className='py-5 text-sm text-center'>Copyright 2024@ rentinstyle.vercel.app - All rights Reserved</p>
       </div>
     </div>

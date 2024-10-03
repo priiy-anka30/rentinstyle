@@ -22,7 +22,7 @@ const App = () => {
       {/* <div className='border-b-2 border-gray-300 my-1'></div> */}
       
       <ToastContainer/>
-      <Navbar/>
+      <Navbar />
       <SearchBar/>
       <Routes>
         <Route path='/' element={<Home/>} />
