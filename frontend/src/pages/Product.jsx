@@ -1,8 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/assets';
 import RelatedProducts from '../components/RelatedProducts';
+// Mock data for rental period options
+const rentalPeriods = ['3 Days', '1 Week', '2 Weeks'];
 
 const Product = () => {
 
@@ -11,6 +13,9 @@ const Product = () => {
   const [productData,setProductData] = useState(false);
   const [image,setImage] = useState('')
   const [size,setSize] = useState('')
+  const [rentalPeriod, setRentalPeriod] = useState('');
+  const [showRentPeriodPanel, setShowRentPeriodPanel] = useState(false);
+  const rentPeriodRef = useRef(null);  // Ref for positioning
 
   const fetchProductData = async () =>{
        products.map((item)=>{
@@ -25,6 +30,23 @@ const Product = () => {
   useEffect(()=>{
     fetchProductData();
   },[productId,products])
+
+  const toggleRentPeriodPanel = () => {
+    setShowRentPeriodPanel(!showRentPeriodPanel);
+  };
+
+  // Close panel if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (rentPeriodRef.current && !rentPeriodRef.current.contains(event.target)) {
+        setShowRentPeriodPanel(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [rentPeriodRef]);
 
   return productData ? (
     <div className='border-t-2 border-black pt-10 transition-opacity ease in duration-500 opacity-100'>
@@ -62,18 +84,39 @@ const Product = () => {
                 <div className='flex gap-2'>
                   {
                     productData.sizes.map((item,index)=>(
-                      <button onClick={()=>setSize(item)} className={`border py-2 px-4 bg-gray-100 ${item === size ? 'border-orange-500' : ''}`} key={index}>{item}</button>
+                      <button onClick={()=>setSize(item)} className={`border py-2 px-4 bg-gray-100 ${item === size ? 'border-black' : ''}`} key={index}>{item}</button>
                     ))
                   }
+                  <div className="relative" ref={rentPeriodRef}>
+                <button onClick={toggleRentPeriodPanel} className='bg-gray-600 text-white px-4 py-3 rounded text-sm active:bg-gray-700 border-white ml-2'>
+                  {rentalPeriod ? rentalPeriod : 'Rent Period'}
+                </button>
+
+                {/* Rent Period Panel */}
+                {showRentPeriodPanel && (
+                  <div className='absolute bg-white shadow-lg rounded-lg border p-4 mt-1 right-0 w-48 z-10'>
+                    {rentalPeriods.map((period, index) => (
+                      <button
+                        key={index}
+                        onClick={() => { setRentalPeriod(period); setShowRentPeriodPanel(false); }}
+                        className={`block w-full text-left px-4 py-2 hover:bg-gray-700 hover:text-white rounded ${rentalPeriod === period ? 'font-bold black' : ''}`}
+                      >
+                        {period}
+                      </button>
+                    ))}
 
                 </div>
+                )}
               </div>
-              <button onClick={()=>addToCart(productData._id,size)} className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>ADD TO CART</button>
+              </div>
+          </div>
+
+              <button onClick={()=>addToCart(productData._id,size)} className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>RENT IT</button>
               <hr className='mt-8 sm:w-4/5'/>
               <div className='text-sm text-gray-500 mt-5 flex flex-col gap-1'>
                 <p>100% Original Product.</p>
                 <p>Cash on delivery is available on this product.</p>
-                <p>Easy return and exchange policy within 7 days.4</p>
+                <p>Easy return and exchange policy within 7 days.</p>
               </div>
           </div>
       </div>
@@ -94,4 +137,4 @@ const Product = () => {
   ) : <div className='opacity-0'></div>
 }
 
-export default Product
+export default Product;
